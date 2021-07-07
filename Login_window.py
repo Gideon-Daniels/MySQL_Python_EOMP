@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+from PIL import *
+from connect_to_database import DatabaseLifeChoices
 
 
 class Login:
@@ -32,30 +34,21 @@ class Login:
         self.button_login.config(width=10, font="Arial 12 ", bg="#323232", fg="#78cc6d")
         self.button_login.config(highlightthickness=1, highlightbackground="#78cc6d", highlightcolor="#78cc6d")
         self.button_login.place(y=250, x=50)
-        self.button_login = Button(self.window, text="Register", command=self.register_button)
+        self.button_login = Button(self.window, text="Register", )
         self.button_login.config(width=10, font="Arial 12 ", bg="#323232", fg="#78cc6d")
         self.button_login.config(highlightthickness=1, highlightbackground="#78cc6d", highlightcolor="#78cc6d")
         self.button_login.place(y=250, x=250)
-        self.button_login = Button(self.window, text="Exit", command=self.exiting)
+        self.button_login = Button(self.window, text="Exit", )
         self.button_login.config(width=10, font="Arial 12 ", bg="#323232", fg="#78cc6d")
         self.button_login.config(highlightthickness=1, highlightbackground="#78cc6d", highlightcolor="#78cc6d")
         self.button_login.place(y=300, x=150)
+        # Images
+
         # repeatedly show window on screen
         self.window.mainloop()
 
     def login_button(self):
-        usernames = DatabaseHospital().select_username()
-        passwords = DatabaseHospital().select_password()
-        entered_username = self.entry_username.get()
-        entered_password = self.entry_password.get()
-        found = False
-        for x in range(len(usernames)):
-            for y in range(len(passwords)):
-                if entered_username in usernames[x] and entered_password in passwords[y]:
-                    messagebox.showinfo("WELCOME", "WELCOME")
-                    found = True
-                    break
-        if not found:
-            messagebox.showinfo("ERROR", "PLEASE ENTER VALID USERNAME AND PASSWORD")
-            self.entry_username.delete(0, 'end')
-            self.entry_password.delete(0, "end")
+        usernames = DatabaseLifeChoices()
+
+
+Login()

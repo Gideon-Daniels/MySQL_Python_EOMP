@@ -12,12 +12,37 @@ class DatabaseLifeChoices:
         self.cursor = self.db.cursor()
 
     def select_all_tables(self):
-        query_select_tables = "describe " \
-                              "User_In_Building"
+        query_select_tables = "show tables"
         self.cursor.execute(query_select_tables)
         records = self.cursor.fetchall()
         return records
 
+    def select_admin_table(self):
+        query_select_table = "describe Admin"
+        self.cursor.execute(query_select_table)
+        records = self.cursor.fetchall()
+        return records
 
-all_tables = DatabaseLifeChoices().select_all_tables()
-print(all_tables)
+    def select_user_table(self):
+        query_select_table = "describe Admin"
+        self.cursor.execute(query_select_table)
+        records = self.cursor.fetchall()
+        return records
+
+    def select_User_In_Building_table(self):
+        query_select_table = "describe User_In_Building"
+        self.cursor.execute(query_select_table)
+        records = self.cursor.fetchall()
+        return records
+
+    def select_Login_Details_table(self):
+        query_select_table = "describe Login_Details"
+        self.cursor.execute(query_select_table)
+        records = self.cursor.fetchall()
+        return records
+
+
+print("Admin Table : ", DatabaseLifeChoices().select_admin_table())
+print("User Table :", DatabaseLifeChoices().select_user_table())
+print("User In Building :", DatabaseLifeChoices().select_User_In_Building_table())
+print("Login Details :", DatabaseLifeChoices().select_Login_Details_table())
