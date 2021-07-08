@@ -1,3 +1,4 @@
+
 class DatabaseLifeChoices:
     def __init__(self):
         # connecting to the database
@@ -10,6 +11,16 @@ class DatabaseLifeChoices:
         )
         # creating an instance of 'cursor' class which is used to execute the 'SQL' statements in 'Python'
         self.cursor = self.db.cursor()
+
+        #                                          DELETE STATEMENTS
+    def delete_admin_data(self, admin_id):
+        # query_delete_data = "DELETE FROM Admin WHERE admin_id= %s "
+        # values = admin_id
+        # self.cursor.execute(query_delete_data, values)
+        # self.cursor.execute(query_delete_data)
+        # self.db.commit()
+        print("IT WORKS ", admin_id)
+
         #                                           SELECT STATEMENTS
     def select_user(self):
         query_select_tables = "SELECT * FROM User"
