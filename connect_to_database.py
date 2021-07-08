@@ -10,39 +10,100 @@ class DatabaseLifeChoices:
         )
         # creating an instance of 'cursor' class which is used to execute the 'SQL' statements in 'Python'
         self.cursor = self.db.cursor()
-
-    def select_all_tables(self):
-        query_select_tables = "show tables"
+        #                                           SELECT STATEMENTS
+    def select_user(self):
+        query_select_tables = "SELECT * FROM User"
         self.cursor.execute(query_select_tables)
         records = self.cursor.fetchall()
         return records
 
     def select_admin_table(self):
-        query_select_table = "describe Admin"
+        query_select_table = "SELECT * FROM Admin"
         self.cursor.execute(query_select_table)
         records = self.cursor.fetchall()
         return records
 
-    def select_user_table(self):
-        query_select_table = "describe Admin"
+    def select_log_in_details(self):
+        query_select_table = "SELECT * FROM Log_in_details"
         self.cursor.execute(query_select_table)
         records = self.cursor.fetchall()
         return records
 
-    def select_User_In_Building_table(self):
-        query_select_table = "describe User_In_Building"
+    def select_attendance_register(self):
+        query_select_table = "SELECT * FROM Attendance_register"
         self.cursor.execute(query_select_table)
         records = self.cursor.fetchall()
         return records
 
-    def select_Login_Details_table(self):
-        query_select_table = "describe Login_Details"
+    def select_next_of_kin(self):
+        query_select_table = "SELECT * FROM Next_of_kin"
         self.cursor.execute(query_select_table)
         records = self.cursor.fetchall()
         return records
+
+        #                                            INSERT STATEMENTS
+    def insert_next_of_kin(self, userid, name, cell_num):
+        userid = userid
+        name = name
+        cell_num = cell_num
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s)"
+        values = (userid, name, cell_num)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
+# 8
+    def insert_user(self, userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
+        userid = userid
+        name = name
+        cell_num = cell_num
+        kin_num = kin_num
+        admin_rights = admin_rights
+        password = password
+        user_id_num = user_id_num
+        date_signed_in = date_signed_in
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
+    def insert_admin(self, userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
+        userid = userid
+        name = name
+        cell_num = cell_num
+        kin_num = kin_num
+        admin_rights = admin_rights
+        password = password
+        user_id_num = user_id_num
+        date_signed_in = date_signed_in
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
+# 6
+    def insert_attendance_register(self, userid, name, date_signed_in, time_signed_in, time_signed_out):
+        userid = userid
+        name = name
+        date_signed_in = date_signed_in
+        time_signed_in = time_signed_in
+        time_signed_out = time_signed_out
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s)"
+        values = (userid, name, date_signed_in, time_signed_in, time_signed_out)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
+    def insert_log_in_details(self, userid, name, password):
+        userid = userid
+        name = name
+        password = password
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s)"
+        values = (userid, name, password)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
 
 
 print("Admin Table : ", DatabaseLifeChoices().select_admin_table())
-print("User Table :", DatabaseLifeChoices().select_user_table())
-print("User In Building :", DatabaseLifeChoices().select_User_In_Building_table())
-print("Login Details :", DatabaseLifeChoices().select_Login_Details_table())
+print("User : ", DatabaseLifeChoices().select_user())
+print("Attendance Register : ", DatabaseLifeChoices().select_attendance_register())
+print("Login Details : ", DatabaseLifeChoices().select_log_in_details())
+print("Next Of Kin : ", DatabaseLifeChoices().select_next_of_kin())

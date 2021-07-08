@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-import connect_to_database
 from connect_to_database import DatabaseLifeChoices
 
 
@@ -57,24 +56,35 @@ class AdminWindow:
         self.tree_view_admin.heading("Password", text="Password", anchor=CENTER)
 
         self.tree_view_admin.place(x=300, y=200)
-        # Add data
 
-        # self.tree_view_user = ttk.Treeview(self.frame_details)
-        #
-        #
-        # self.tree_view_next_of_kin = ttk.Treeview(self.frame_details)
-        #
-        #
-        # self.tree_view_user_in_building = ttk.Treeview(self.frame_details)
-        #
-        #
-        # self.tree_view_login_details = ttk.Treeview(self.frame_details)
-        #
-        #
+        # Algorithm adding data to table
+        self.data = DatabaseLifeChoices().select_user()
+        self.count = 0
+
+        for record in self.data:
+            admin_rights = "NO"
+            if record[0] == 1:
+                admin_rights = "YES"
+            self.tree_view_admin.insert(parent="", index="end", iid=self.count, text="", values=(
+             admin_rights,
+             record[1],
+             record[2],
+             record[3],
+             record[4],
+             record[5],
+             record[6],
+             record[7],
+             record[8]
+                                                                                               )
+                                        )
+            self.count += 1
+
         # Buttons
 
         # repeatedly show window on screen
         self.window.mainloop()
+
+    #                                                    END OF CONSTRUCTOR
 
 
 AdminWindow()
