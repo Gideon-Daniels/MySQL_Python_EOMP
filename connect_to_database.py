@@ -1,25 +1,35 @@
 
 class DatabaseLifeChoices:
     def __init__(self):
-        # connecting to the database
-        import mysql.connector as mysql
-        self.db = mysql.connect(
-            host="localhost",
-            user="lifechoices",
-            password="@Lifechoices1234",
-            database="EOMP_Lifechoices_Database"
-        )
-        # creating an instance of 'cursor' class which is used to execute the 'SQL' statements in 'Python'
-        self.cursor = self.db.cursor()
+        global mysql, errorcode
+        try:
+            # connecting to the database
+            import mysql.connector as mysql
+            from mysql.connector import errorcode
+            self.db = mysql.connect(
+                host="localhost",
+                user="lifechoices",
+                password="@Lifechoices1234",
+                database="EOMP_Lifechoices_Database"
+            )
 
+            # creating an instance of 'cursor' class which is used to execute the 'SQL' statements in 'Python'
+            self.cursor = self.db.cursor()
+
+        except mysql.Error as error:
+            if error.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print("User authorization error")
+            elif error.errno == errorcode.ER_BAD_DB_ERROR:
+                print("Database doesn't exist")
+            else:
+                print(error)
         #                                          DELETE STATEMENTS
     def delete_admin_data(self, admin_id):
-        # query_delete_data = "DELETE FROM Admin WHERE admin_id= %s "
-        # values = admin_id
-        # self.cursor.execute(query_delete_data, values)
-        # self.cursor.execute(query_delete_data)
-        # self.db.commit()
-        print("IT WORKS ", admin_id)
+        query_delete_data = "DELETE FROM Admin WHERE admin_id= %s "
+        values = admin_id
+        self.cursor.execute(query_delete_data, values)
+        self.cursor.execute(query_delete_data)
+        self.db.commit()
 
         #                                           SELECT STATEMENTS
     def select_user(self):
@@ -68,9 +78,26 @@ class DatabaseLifeChoices:
         self.db.commit()
         #                                            INSERT STATEMENTS
 
+# 9
+    def insert_user(self, userid, name, surname, cell_num, kin_num, admin_rights, password, user_id_num,
+                    date_signed_in):
+        userid = userid
+        name = name
+        surname = surname
+        cell_num = cell_num
+        kin_num = kin_num
+        admin_rights = admin_rights
+        password = password
+        user_id_num = user_id_num
+        date_signed_in = date_signed_in
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (userid, name,surname, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
 # 8
-    def insert_user(self, userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
-        userid = userid
+    def insert_admin(self, admin_id, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
+        admin_id = admin_id
         name = name
         cell_num = cell_num
         kin_num = kin_num
@@ -79,25 +106,11 @@ class DatabaseLifeChoices:
         user_id_num = user_id_num
         date_signed_in = date_signed_in
         query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-        values = (userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
+        values = (admin_id, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
         self.cursor.execute(query_insert, values)
         self.db.commit()
 
-    def insert_admin(self, userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
-        userid = userid
-        name = name
-        cell_num = cell_num
-        kin_num = kin_num
-        admin_rights = admin_rights
-        password = password
-        user_id_num = user_id_num
-        date_signed_in = date_signed_in
-        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-        values = (userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
-        self.cursor.execute(query_insert, values)
-        self.db.commit()
-
-# 6
+# 5
     def insert_attendance_register(self, userid, name, date_signed_in, time_signed_in, time_signed_out):
         userid = userid
         name = name
@@ -109,6 +122,7 @@ class DatabaseLifeChoices:
         self.cursor.execute(query_insert, values)
         self.db.commit()
 
+# 3
     def insert_log_in_details(self, userid, name, password):
         userid = userid
         name = name
@@ -118,6 +132,7 @@ class DatabaseLifeChoices:
         self.cursor.execute(query_insert, values)
         self.db.commit()
 
+# 3
     def insert_next_of_kin(self, userid, name, cell_num):
         userid = userid
         name = name

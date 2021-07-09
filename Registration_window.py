@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from connect_to_database import DatabaseLifeChoices
 
 
 class Registration:
@@ -114,9 +115,50 @@ class Registration:
         self.entry_password.config(width=15, font="Arial 12", bg="#323232", fg="#78cc6d")
         self.entry_password.place(x=450, y=370)
         # Buttons
+        self.button_exit = Button(self.window, text="Exit", command=self.exit_window)
+        self.button_exit.config(width=10, font="Arial 12 ", fg="#323232", bg="#78cc6d")
+        self.button_exit.config(highlightthickness=1, highlightbackground="#78cc6d", highlightcolor="#78cc6d")
+        self.button_exit.place(y=580, x=450)
+
+        self.button_register = Button(self.window, text="Register", command=self.register_information)
+        self.button_register.config(width=10, font="Arial 12 ", fg="#323232", bg="#78cc6d")
+        self.button_register.config(highlightthickness=1, highlightbackground="#78cc6d", highlightcolor="#78cc6d")
+        self.button_register.place(y=580, x=250)
 
         # repeatedly show window on screen
         self.window.mainloop()
+
+    def register_information(self):
+        name = self.entry_name.get()
+        surname = self.entry_surname.get()
+        id_number = self.entry_id_num.get()
+        cell_num = self.entry_cell_num.get()
+        kin_name = self.entry_kin_name.get()
+        kin_cell_num = self.entry_kin_cell_num.get()
+        username = self.entry_username
+        password = self.entry_password
+        if username == "" or \
+                password == "" or \
+                name == "" or \
+                surname == "" or \
+                id_number == "" or \
+                kin_name == "" or \
+                kin_cell_num == "" \
+                or cell_num == "":
+            messagebox.showinfo("INVALID FIELDS", "Please fill in all fields")
+
+        else:
+            count = len(DatabaseLifeChoices().select_user())
+            if count >= 1:
+                count += 1
+                # DatabaseLifeChoices().insert_user(count, name, surname, cell_num, kin_cell_num, False, password,
+                #                                   id_number)
+            self.window.destroy()
+            import Login_window
+
+    def exit_window(self):
+        self.window.destroy()
+
 
 
 Registration()
