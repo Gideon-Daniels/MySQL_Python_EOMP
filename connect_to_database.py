@@ -23,44 +23,50 @@ class DatabaseLifeChoices:
 
         #                                           SELECT STATEMENTS
     def select_user(self):
-        query_select_tables = "SELECT * FROM User"
-        self.cursor.execute(query_select_tables)
+        query_select_user = "SELECT * FROM User"
+        self.cursor.execute(query_select_user)
         records = self.cursor.fetchall()
         return records
 
     def select_admin_table(self):
-        query_select_table = "SELECT * FROM Admin"
-        self.cursor.execute(query_select_table)
+        query_select_admin = "SELECT * FROM Admin"
+        self.cursor.execute(query_select_admin)
         records = self.cursor.fetchall()
         return records
 
     def select_log_in_details(self):
-        query_select_table = "SELECT * FROM Log_in_details"
-        self.cursor.execute(query_select_table)
+        query_select_log_in_details = "SELECT * FROM Log_in_details"
+        self.cursor.execute(query_select_log_in_details)
         records = self.cursor.fetchall()
         return records
 
     def select_attendance_register(self):
-        query_select_table = "SELECT * FROM Attendance_register"
-        self.cursor.execute(query_select_table)
+        query_select_attendance = "SELECT * FROM Attendance_register"
+        self.cursor.execute(query_select_attendance)
         records = self.cursor.fetchall()
         return records
 
     def select_next_of_kin(self):
-        query_select_table = "SELECT * FROM Next_of_kin"
-        self.cursor.execute(query_select_table)
+        query_select_next_of_kin = "SELECT * FROM Next_of_kin"
+        self.cursor.execute(query_select_next_of_kin)
         records = self.cursor.fetchall()
         return records
 
-        #                                            INSERT STATEMENTS
-    def insert_next_of_kin(self, userid, name, cell_num):
-        userid = userid
-        name = name
-        cell_num = cell_num
-        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s)"
-        values = (userid, name, cell_num)
-        self.cursor.execute(query_insert, values)
+    def select_usernames(self):
+        query_select_next_of_kin = "SELECT username FROM User"
+        self.cursor.execute(query_select_next_of_kin)
+        records = self.cursor.fetchall()
+        return records
+    #                                            UPDATE STATEMENTS
+
+    def update_attendance_register(self, date_signed_in, signed_out):
+        date_signed_in = date_signed_in
+        signed_out = signed_out
+        query_update = "UPDATE Attendance_register SET time_signed_out=%s WHERE date_signed_in=%s"
+        values = (signed_out, date_signed_in)
+        self.cursor.execute(query_update, values)
         self.db.commit()
+        #                                            INSERT STATEMENTS
 
 # 8
     def insert_user(self, userid, name, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in):
@@ -98,7 +104,7 @@ class DatabaseLifeChoices:
         date_signed_in = date_signed_in
         time_signed_in = time_signed_in
         time_signed_out = time_signed_out
-        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s)"
+        query_insert = "INSERT INTO Attendance_register VALUES (%s,%s,%s,%s,%s)"
         values = (userid, name, date_signed_in, time_signed_in, time_signed_out)
         self.cursor.execute(query_insert, values)
         self.db.commit()
@@ -109,6 +115,15 @@ class DatabaseLifeChoices:
         password = password
         query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s)"
         values = (userid, name, password)
+        self.cursor.execute(query_insert, values)
+        self.db.commit()
+
+    def insert_next_of_kin(self, userid, name, cell_num):
+        userid = userid
+        name = name
+        cell_num = cell_num
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s)"
+        values = (userid, name, cell_num)
         self.cursor.execute(query_insert, values)
         self.db.commit()
 
