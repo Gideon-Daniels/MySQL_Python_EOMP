@@ -88,15 +88,15 @@ class Login:
                         messagebox.showinfo("INFO", "You have already signed in")
                         break
                     elif record[2] == self.entry_password.get() and record[1] == self.entry_username.get():
-                            date_stamp = current_date()
-                            time_stamp = datetime.datetime.today().time()
-                            print(time_stamp)
-                            DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp,
-                                                                             time_stamp, 0)
-                            messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
-                            break
+                        date_stamp = current_date()
+                        time_stamp = datetime.datetime.today().time()
+                        print(time_stamp)
+                        DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp,
+                                                                         time_stamp, 0)
+                        messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
+                        break
         except:
-            messagebox.showinfo("SYSTERM ERROR","CONTACT ADMIN FOR MORE INFO")
+            messagebox.showinfo("SYSTERM ERROR", "CONTACT ADMIN FOR MORE INFO")
         else:
             messagebox.showinfo("INVALID", "USERNAME OR PASSWORD INCORRECT!")
 
