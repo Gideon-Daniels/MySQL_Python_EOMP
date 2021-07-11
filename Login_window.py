@@ -77,32 +77,28 @@ class Login:
     #                                                     ALL FUNCTIONS
 
     def login_button(self):
-        for data in self.attendance:
-            num = 0
-
-            for record in self.login_details:
-                if self.entry_password.get() == "" or self.entry_username.get() == "":
-                    messagebox.showinfo("INVALID", "Username or Password is incorrect")
-                    break
-                elif data[4] == 0 and record[2] == self.entry_password.get() and record[1] == \
-                        self.entry_username.get():
-                    messagebox.showinfo("INFO", "You have already signed in")
-                    break
-                elif record[2] == self.entry_password.get() and record[1] == self.entry_username.get():
-                    # try:
-                    date_stamp = current_date()
-                    time_stamp = datetime.datetime.today().time()
-                    print(time_stamp)
-                    DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp,
-                                                                     time_stamp, 0)
-                    messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
-                # except:
-                #     messagebox.showinfo("ERROR", "You have already logged in")
-                else:
-                    print(data)
-                    print(record[1])
-                    print(record[2])
-                    messagebox.showinfo("INVALID", "USERNAME OR PASSWORD INCORRECT!")
+        try:
+            for data in self.attendance:
+                for record in self.login_details:
+                    if self.entry_password.get() == "" or self.entry_username.get() == "":
+                        messagebox.showinfo("INVALID", "Username or Password is incorrect")
+                        break
+                    elif data[4] == 0 and record[2] == self.entry_password.get() and record[1] == \
+                            self.entry_username.get():
+                        messagebox.showinfo("INFO", "You have already signed in")
+                        break
+                    elif record[2] == self.entry_password.get() and record[1] == self.entry_username.get():
+                            date_stamp = current_date()
+                            time_stamp = datetime.datetime.today().time()
+                            print(time_stamp)
+                            DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp,
+                                                                             time_stamp, 0)
+                            messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
+                            break
+        except:
+            messagebox.showinfo("SYSTERM ERROR","CONTACT ADMIN FOR MORE INFO")
+        else:
+            messagebox.showinfo("INVALID", "USERNAME OR PASSWORD INCORRECT!")
 
     def sign_out(self):
         for data_in_attendance in self.attendance:
