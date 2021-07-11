@@ -23,21 +23,16 @@ DROP TABLE IF EXISTS `Admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Admin` (
-  `Admin_rights` tinyint(1) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Surname` varchar(50) NOT NULL,
-  `Phone_number` int NOT NULL,
-  `ID_number` int NOT NULL,
-  `Kin_phone_number` int NOT NULL,
-  `User_in_building` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Admin_rights`),
-  KEY `ID_number` (`ID_number`),
-  KEY `Kin_phone_number` (`Kin_phone_number`),
-  KEY `User_in_building` (`User_in_building`),
-  CONSTRAINT `Admin_ibfk_1` FOREIGN KEY (`ID_number`) REFERENCES `User` (`Id_number`),
-  CONSTRAINT `Admin_ibfk_2` FOREIGN KEY (`Kin_phone_number`) REFERENCES `Next_Of_Kin` (`Phone_number`),
-  CONSTRAINT `Admin_ibfk_3` FOREIGN KEY (`User_in_building`) REFERENCES `User_In_Building` (`User_in_building`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `admin_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `cell_num` int NOT NULL,
+  `kin_number` int NOT NULL,
+  `admin_rights` tinyint(1) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`admin_rights`),
+  KEY `admin_id` (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,30 +41,88 @@ CREATE TABLE `Admin` (
 
 LOCK TABLES `Admin` WRITE;
 /*!40000 ALTER TABLE `Admin` DISABLE KEYS */;
+INSERT INTO `Admin` VALUES (1,'Gideon','Daniels',726078261,726075263,1,'gideon');
 /*!40000 ALTER TABLE `Admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Next_Of_Kin`
+-- Table structure for table `Attendance_register`
 --
 
-DROP TABLE IF EXISTS `Next_Of_Kin`;
+DROP TABLE IF EXISTS `Attendance_register`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Next_Of_Kin` (
-  `Phone_number` int NOT NULL,
-  `Name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Phone_number`)
+CREATE TABLE `Attendance_register` (
+  `user_id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `date_signed_in` date DEFAULT NULL,
+  `time_signed_in` time NOT NULL,
+  `time_sign_out` time NOT NULL,
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `Attendance_register_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Next_Of_Kin`
+-- Dumping data for table `Attendance_register`
 --
 
-LOCK TABLES `Next_Of_Kin` WRITE;
-/*!40000 ALTER TABLE `Next_Of_Kin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Next_Of_Kin` ENABLE KEYS */;
+LOCK TABLES `Attendance_register` WRITE;
+/*!40000 ALTER TABLE `Attendance_register` DISABLE KEYS */;
+INSERT INTO `Attendance_register` VALUES (2,'Gilbert','2021-07-11','09:19:04','09:22:29'),(1,'Gideon','2021-07-11','09:24:41','09:26:30');
+/*!40000 ALTER TABLE `Attendance_register` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Log_in_details`
+--
+
+DROP TABLE IF EXISTS `Log_in_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Log_in_details` (
+  `user_id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `Log_in_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Log_in_details`
+--
+
+LOCK TABLES `Log_in_details` WRITE;
+/*!40000 ALTER TABLE `Log_in_details` DISABLE KEYS */;
+INSERT INTO `Log_in_details` VALUES (1,'Gideon','gideon'),(2,'Gilbert','gilbert'),(3,'Merlin','merlin');
+/*!40000 ALTER TABLE `Log_in_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Next_of_kin`
+--
+
+DROP TABLE IF EXISTS `Next_of_kin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Next_of_kin` (
+  `user_id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `cell_number` int NOT NULL,
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `Next_of_kin_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Next_of_kin`
+--
+
+LOCK TABLES `Next_of_kin` WRITE;
+/*!40000 ALTER TABLE `Next_of_kin` DISABLE KEYS */;
+INSERT INTO `Next_of_kin` VALUES (1,'Merlin',726075263),(2,'Gideon',726078261),(3,'gilbert',725558888);
+/*!40000 ALTER TABLE `Next_of_kin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -80,15 +133,16 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `User` (
-  `Id_number` int NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Surname` varchar(50) NOT NULL,
-  `Phone_number` int NOT NULL,
-  `Kin_phone_number` int NOT NULL,
-  `Admin_rights` tinyint(1) NOT NULL,
-  `User_in_building` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Id_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `cell_num` int NOT NULL,
+  `kin_number` int NOT NULL,
+  `admin_rights` tinyint(1) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `user_id_number` varchar(13) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,31 +151,8 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES (1,'Gideon','Daniels',726078261,726075263,1,'gideon','9609075272087'),(2,'Gilbert','Daniels',725558888,726078261,0,'gilbert','9609075272086'),(3,'Merlin','Daniels',729997777,726078261,0,'merlin','206095272113');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `User_In_Building`
---
-
-DROP TABLE IF EXISTS `User_In_Building`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `User_In_Building` (
-  `User_in_building` tinyint(1) NOT NULL,
-  `Time_signin` datetime NOT NULL,
-  `Time_signout` datetime NOT NULL,
-  PRIMARY KEY (`User_in_building`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `User_In_Building`
---
-
-LOCK TABLES `User_In_Building` WRITE;
-/*!40000 ALTER TABLE `User_In_Building` DISABLE KEYS */;
-/*!40000 ALTER TABLE `User_In_Building` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -133,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-05 17:06:36
+-- Dump completed on 2021-07-11  9:41:55

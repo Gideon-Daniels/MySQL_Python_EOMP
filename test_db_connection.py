@@ -24,6 +24,5 @@ class TestConnection(unittest.TestCase):
         self.cursor = self.db.cursor()
 
 
-
 if __name__ == '__main__':
     unittest.main()

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f14821a8-ef27-4812-b5b4-27cb748fdb9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registration_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registration_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Admin_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EOMP_Lifechoices_Database" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EOMP_Lifechoices_Database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connect_to_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/connect_to_database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_db_connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_db_connection.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,33 +45,68 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for testing_fields.TestFields.test_field_type">
-    <configuration name="Unittests for test_db_connection.TestConnection.test_connection" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Login_window">
+    <configuration name="Admin_window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EOMP_MySQL_Python_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_db_connection.TestConnection.test_connection&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Admin_window.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for testing_fields.TestFields" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Login_window" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EOMP_MySQL_Python_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;testing_fields.TestFields&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Login_window.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="connect_to_database" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EOMP_MySQL_Python_Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/connect_to_database.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests for testing_fields.TestFields.test_field_type" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -82,20 +121,6 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;testing_fields.TestFields.test_field_type&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in test_db_connection.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="EOMP_MySQL_Python_Project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_db_connection.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests in testing_fields.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -114,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Login_window" />
+        <item itemvalue="Python.Admin_window" />
+        <item itemvalue="Python.connect_to_database" />
         <item itemvalue="Python tests.Unittests for testing_fields.TestFields.test_field_type" />
         <item itemvalue="Python tests.Unittests in testing_fields.py" />
-        <item itemvalue="Python tests.Unittests for testing_fields.TestFields" />
-        <item itemvalue="Python tests.Unittests for test_db_connection.TestConnection.test_connection" />
-        <item itemvalue="Python tests.Unittests in test_db_connection.py" />
       </list>
     </recent_temporary>
   </component>

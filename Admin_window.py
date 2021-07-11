@@ -131,7 +131,7 @@ class AdminWindow:
         self.tree_view_attendance.heading("Name", text="Name", anchor=CENTER)
         self.tree_view_attendance.heading("Date Signed In", text="Date Signed In", anchor=CENTER)
         self.tree_view_attendance.heading("Time Signed In", text="Date Signed In", anchor=CENTER)
-        self.tree_view_attendance.heading("Time Signed Out", text="Date Signed In", anchor=CENTER)
+        self.tree_view_attendance.heading("Time Signed Out", text="Date Signed Out", anchor=CENTER)
 
         self.tree_view_attendance.pack(padx=100, pady=100)
 

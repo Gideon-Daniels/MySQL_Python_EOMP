@@ -4,17 +4,8 @@ from PIL import *
 from connect_to_database import DatabaseLifeChoices
 import datetime
 
+
 # Function to round time in date time class
-
-
-def round_seconds(time_object):
-    try:
-        new_time = time_object
-        if new_time.microsecond >= 500000:
-            new_time = new_time + datetime.timedelta(seconds=1)
-            return new_time.replace(microsecond=0)
-    except TypeError:
-        messagebox.showerror("system Error", "please try again")
 
 
 def current_date():
@@ -24,8 +15,7 @@ def current_date():
 
 def current_time():
     time = datetime.datetime.today().time()
-    rounded_time = round_seconds(time)
-    return rounded_time
+    return time
 
 
 class Login:
@@ -88,37 +78,49 @@ class Login:
 
     def login_button(self):
         for data in self.attendance:
+            num = 0
+
+            for record in self.login_details:
+                if self.entry_password.get() == "" or self.entry_username.get() == "":
+                    messagebox.showinfo("INVALID", "Username or Password is incorrect")
+                    break
+                elif data[4] == 0 and record[2] == self.entry_password.get() and record[1] == \
+                        self.entry_username.get():
+                    messagebox.showinfo("INFO", "You have already signed in")
+                    break
+                elif record[2] == self.entry_password.get() and record[1] == self.entry_username.get():
+                    # try:
+                    date_stamp = current_date()
+                    time_stamp = datetime.datetime.today().time()
+                    print(time_stamp)
+                    DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp,
+                                                                     time_stamp, 0)
+                    messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
+                # except:
+                #     messagebox.showinfo("ERROR", "You have already logged in")
+                else:
+                    print(data)
+                    print(record[1])
+                    print(record[2])
+                    messagebox.showinfo("INVALID", "USERNAME OR PASSWORD INCORRECT!")
+
+    def sign_out(self):
+        for data_in_attendance in self.attendance:
             if self.entry_password.get() == "" or self.entry_username.get() == "":
                 messagebox.showinfo("INVALID", "Username or Password is incorrect")
                 break
             else:
                 for record in self.login_details:
-                    if data[3] != 0 and record[2] == self.entry_password.get() and record[1] == \
-                            self.entry_username.get():
-                        messagebox.showinfo("INFO", "You have already signed in")
-                        break
-                    elif record[2] == self.entry_password.get() and record[1] == self.entry_username.get():
-                        date_stamp = current_date()
+                    if data_in_attendance[4] == datetime.timedelta(0) and record[2] == self.entry_password.get() and \
+                            record[1] == self.entry_username.get():
                         time_stamp = current_time()
-                        DatabaseLifeChoices().insert_attendance_register(record[0], record[1], date_stamp, time_stamp, 0)
-                        messagebox.showinfo("Successful", "LOGIN SUCCESSFUL")
+                        DatabaseLifeChoices().update_attendance_register(data_in_attendance[2], time_stamp)
+                        messagebox.showinfo("Successful", "LOG OUT SUCCESSFUL")
                         break
-                    else:
-                        messagebox.showinfo("INVALID", "Username or Password is incorrect")
-                        break
-                break
+                    elif data_in_attendance[4] != datetime.timedelta(0) and record[2] == self.entry_password.get() and \
+                            record[1] == self.entry_username.get():
+                        messagebox.showinfo("INFO", "YOU ARE ALREADY LOGGED OUT")
 
-    def sign_out(self):
-        for record in self.attendance:
-            if record[4] == 0 and record[1] == self.entry_username.get() and record[2] == self.entry_password.get():
-                sign_out_time = current_time()
-                DatabaseLifeChoices().update_attendance_register(record[3], sign_out_time)
-                break
-            elif record[4] != 0 and record[1] == self.entry_username.get() and record[2] == self.entry_password.get():
-                messagebox.showinfo("INFO", "YOU HAVE ALREADY SIGNED OUT")
-                break
-            else:
-                messagebox.showinfo("INVALID", "Username or Password is incorrect")
                 break
 
     def registration_window(self):

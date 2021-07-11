@@ -23,6 +23,7 @@ class DatabaseLifeChoices:
                 print("Database doesn't exist")
             else:
                 print(error)
+
         #                                          DELETE STATEMENTS
     def delete_admin_data(self, admin_id):
         query_delete_data = "DELETE FROM Admin WHERE admin_id= %s "
@@ -72,16 +73,15 @@ class DatabaseLifeChoices:
     def update_attendance_register(self, date_signed_in, signed_out):
         date_signed_in = date_signed_in
         signed_out = signed_out
-        query_update = "UPDATE Attendance_register SET time_signed_out=%s WHERE date_signed_in=%s"
+        query_update = "UPDATE Attendance_register SET time_sign_out=%s WHERE date_signed_in=%s"
         values = (signed_out, date_signed_in)
         self.cursor.execute(query_update, values)
         self.db.commit()
         #                                            INSERT STATEMENTS
 
-# 9
-    def insert_user(self, userid, name, surname, cell_num, kin_num, admin_rights, password, user_id_num,
+# 8
+    def insert_user(self, name, surname, cell_num, kin_num, admin_rights, password, user_id_num,
                     date_signed_in):
-        userid = userid
         name = name
         surname = surname
         cell_num = cell_num
@@ -90,8 +90,8 @@ class DatabaseLifeChoices:
         password = password
         user_id_num = user_id_num
         date_signed_in = date_signed_in
-        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        values = (userid, name,surname, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
+        query_insert = "INSERT INTO Next_of_kin VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+        values = (name, surname, cell_num, kin_num, admin_rights, password, user_id_num, date_signed_in)
         self.cursor.execute(query_insert, values)
         self.db.commit()
 
