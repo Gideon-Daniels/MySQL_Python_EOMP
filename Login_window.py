@@ -69,8 +69,8 @@ class Login:
         # fetching data from database
         self.login_details = DatabaseLifeChoices().select_log_in_details()
         self.attendance = DatabaseLifeChoices().select_attendance_register()
-        # Images
-
+        # keybinding A key to window
+        self.window.bind("<Control-a>", lambda e: self.admin_window())
         # repeatedly show window on screen
         self.window.mainloop()
 
@@ -125,6 +125,9 @@ class Login:
 
     def exit_window(self):
         self.window.destroy()
+
+    def admin_window(self):
+        import Admin_window
 
 
 Login()

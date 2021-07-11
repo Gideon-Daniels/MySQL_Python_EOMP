@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f14821a8-ef27-4812-b5b4-27cb748fdb9f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Admin_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Login_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registration_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registration_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connect_to_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/connect_to_database.py" afterDir="false" />
-    </list>
+    <list default="true" id="f14821a8-ef27-4812-b5b4-27cb748fdb9f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
